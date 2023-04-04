@@ -1,0 +1,13 @@
+
+$content-bg:                    transparent;
+$sidebar-width:                 232px;
+$sidebar-collapsed-width:       64px;
+$header-height:                 55px;
+$header-bg:                     $light; // #156F93
+$header-bg-end:                 $primary;
+
+@import 'modals';
+@import 'layout';
+@import 'header';
+@import 'sidebar';
+@import 'user-menu';

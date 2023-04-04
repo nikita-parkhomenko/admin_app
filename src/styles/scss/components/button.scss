@@ -1,0 +1,15 @@
+.btn-secondary {
+  color: $primary;
+
+  &:hover { color: $primary; }
+  &:active {color: $primary !important; }
+}
+
+.btn-danger {
+  color: #EE5757;
+  border: none;
+  background: #FFEDF2;
+
+  &:hover { color: #EE5757; background: #ffe1e4; }
+  &:active {color: #EE5757 !important; background: #ffe1e4 !important; }
+}

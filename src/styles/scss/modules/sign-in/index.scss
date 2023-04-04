@@ -1,0 +1,42 @@
+#SignIn {
+  padding-top: 30px;
+
+  .logo-row {
+    padding-top: 35px;
+    margin-bottom: 108px;
+
+    .logo-img {
+      width: 38px;
+      height: 43px;
+    }
+  }
+
+  .presentation {
+    overflow: hidden;
+    max-height: 880px;
+    border-radius: 16px;
+    background: $primary;
+    border: 1px solid #F0F0F0;
+    box-shadow: 0 0 64px rgba(31, 9, 53, 0.14);
+    height: calc(100vh - 60px); // 100vh - padding top and bottom
+    background: radial-gradient(81% 81% at 18.5% 19%, #7257EE 0%, #B7A8FF 100%);
+
+    .info {
+      padding-top: 80px;
+      margin: 0 76px 50px 60px;
+
+      .position {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    .dashboard-img {
+      width: auto;
+      height: 680px;
+      @include media-breakpoint-down(xl) {
+        height: 560px;
+      }
+      margin-left: 48px;
+    }
+  }
+}

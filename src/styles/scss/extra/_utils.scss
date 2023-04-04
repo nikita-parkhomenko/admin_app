@@ -1,0 +1,35 @@
+// Common helpers
+
+ .transition { @include transition(all 250ms ease-in-out); }
+
+ .bg-transparent  { background-color: transparent !important; }
+
+ .text-nowrap { white-space: nowrap; }
+
+.text-primary-gradient {
+  background: -webkit-linear-gradient(90deg, #4674E8 3%, #A33BE2 106%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+ // Background image
+ .bg-center {
+   background-size: cover;
+   background-position: center center;
+ }
+ .bg-contain {
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center center;
+ }
+ .bg-cover {
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center center;
+ }
+ // cursor
+ .cursor-move        { cursor: move !important; }
+ .cursor-grab        { cursor: grab !important; }
+ .cursor-no-drop     { cursor: no-drop !important; }
+ .cursor-pointer     { cursor: pointer !important; }
+ .cursor-grabbing    { cursor: grabbing !important; }

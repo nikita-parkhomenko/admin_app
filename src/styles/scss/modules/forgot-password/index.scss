@@ -1,0 +1,18 @@
+#ForgotPassword {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 90px 20px 30px;
+  background: radial-gradient(133% 341% at 177% 133%, #B0A1F6 0%, rgba(114, 87, 238, 0) 100%), radial-gradient(123% 122% at -24% 11%, #7257EE 0%, #B7A8FF 100%);
+
+  .card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+
+    .app-logo {
+      width: 40px;
+      height: auto;
+    }
+  }
+}

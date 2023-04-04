@@ -1,0 +1,35 @@
+
+#UserList {
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  .app-preloader {
+    height: calc(100vh - 274px);
+  }
+
+  .empty-table-message {
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-lg;
+    height: calc(100vh - 380px);
+  }
+
+  .container-scrollable-table {
+    overflow: auto;
+    height: calc(100vh - 274px);
+
+    table {
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+
+    thead {
+      left: 0;
+      top: -1px;
+      z-index: 100;
+      position: sticky;
+    }
+  }
+}

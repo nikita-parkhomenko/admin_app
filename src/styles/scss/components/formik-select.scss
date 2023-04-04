@@ -1,0 +1,95 @@
+
+.formik-select {
+
+  &.is-valid {
+    .formik-select-field__control {
+      border-color: $form-feedback-valid-color !important;
+      &--is-focused {
+        $focus-box-shadow: 0 0 $input-btn-focus-blur $input-focus-width rgba($form-feedback-valid-color, $input-btn-focus-color-opacity);
+        box-shadow: $focus-box-shadow !important;
+      }
+    }
+  }
+
+  &.is-invalid {
+    .formik-select-field__control {
+      border-color: $form-feedback-invalid-color !important;
+      &--is-focused {
+        $focus-box-shadow: 0 0 $input-btn-focus-blur $input-focus-width rgba($form-feedback-invalid-color, $input-btn-focus-color-opacity);
+        box-shadow: $focus-box-shadow !important;
+      }
+    }
+  }
+
+  // NOTE please @see { @link https://react-select.com/styles }
+  &-field {
+    &__control {
+      border-color: $input-border-color !important;
+      background-color: $input-bg !important;
+      @include border-radius($input-border-radius !important, 0);
+
+      &--is-focused {
+        $focus-box-shadow: 0 0 $input-btn-focus-blur $input-focus-width rgba($input-focus-border-color, $input-btn-focus-color-opacity);
+        //box-shadow: unset !important;
+        //box-shadow: $focus-box-shadow;
+        border-color: $input-focus-border-color !important;
+        box-shadow: none !important;
+      }
+
+      &--is-disabled {
+        background-color: transparent;
+        opacity: .5;
+      }
+
+      &--menu-is-open {
+        .formik-select-field__dropdown-indicator {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &__value-container {
+      padding: 2px $input-padding-x !important;
+    }
+
+    &__indicators {
+      .formik-select-field__indicator-separator {
+        display: none;
+      }
+    }
+
+    &__dropdown-indicator {
+      @include transition(transform 0.15s, color 0.15s !important);
+    }
+
+    &__container {
+      color: $input-color !important;
+    }
+
+    &__menu {
+      z-index: $zindex-dropdown;
+    }
+
+    &__input {
+      height: 48px;
+      color: $input-color;
+    }
+
+    &__placeholder {
+      color: $input-placeholder-color;
+    }
+
+    &__option {
+      height: 48px;
+      display: flex !important;
+      align-items: center;
+      &--is-focused {
+        background-color: lighten($primary, 10%) !important;
+        color: $white !important;
+      }
+      &--is-selected {
+        background-color: $primary !important;
+      }
+    }
+  }
+}

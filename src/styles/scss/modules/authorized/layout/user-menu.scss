@@ -1,0 +1,17 @@
+
+#UserMenu {
+  display: flex;
+  justify-content: end;
+
+  .avatar {
+    margin: -6px 6px -4px 0;
+    @include rect-size(32px);
+  }
+
+  .dropdown-toggle {
+
+    // FIXME "reactstrap" has known issue within DropdownToggle
+    &:after { display: none; }
+
+  }
+}

@@ -1,0 +1,11 @@
+
+#Header {
+
+  & > .container-fluid {
+    justify-content: start;
+
+    .navbar-brand {
+      .logo { @include rect-size(60px)}
+    }
+  }
+}

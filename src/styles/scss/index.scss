@@ -1,0 +1,25 @@
+
+// override bootstrap variables here
+@import 'variables';
+// override bootstrap mixins here
+@import 'mixins';
+
+// include fonts
+@import '../fonts';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// React Toast
+@import '~react-toastify/dist/ReactToastify.css';
+
+// React Image Crop
+@import '~react-image-crop/src/ReactCrop.scss';
+
+// date time picker
+@import '~react-datepicker/dist/react-datepicker.css';
+
+// additional custom styles
+@import 'extra';
+@import 'modules';
+@import 'components';

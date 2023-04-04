@@ -1,0 +1,31 @@
+.circle-progress {
+  display: block;
+  margin: 10px auto;
+  max-width: 80%;
+
+  .circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 2.8;
+  }
+
+  .circle {
+    fill: none;
+    stroke: #7257EE;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+  }
+
+  @keyframes progress {
+    0% {
+      stroke-dasharray: 0 100;
+    }
+  }
+
+  .percentage {
+    fill: #666;
+    font-size: 0.5em;
+    text-anchor: middle;
+  }
+}
