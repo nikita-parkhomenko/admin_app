@@ -6,6 +6,7 @@ import { create } from 'redux-saga-controller';
 import { takeEvery, put, call, select, delay } from 'redux-saga/effects';
 
 // local dependencies
+import { users as mock } from '../mock';
 import { USERS_LIST } from '../../../../constants';
 import { API, silence, Swall } from '../../../../services';
 
@@ -58,11 +59,7 @@ function * updateFilterExe ({ type, payload }) {
     //   params: { page, size, sort: [`${sortF},${sortD ? 'DESC' : 'ASC'}`] },
     // });
     // yield put(usersListCtrl.action.updateCtrl({ list: content, totalPages, page: pageNumber }));
-    yield put(usersListCtrl.action.updateCtrl({ list: [
-      { firstName: 'Fake', lastName: 'Mocked data', id: 0 },
-      { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id: 6 },
-      { id: 7 }, { id: 8 }, { id: 9 }, { id: 10 }, { id: 11 }, { id: 12 },
-    ] }));
+    yield put(usersListCtrl.action.updateCtrl({ list: mock, totalPages: 12 }));
     const latest = yield select(usersListCtrl.select);
     yield call(USERS_LIST.REPLACE, {}, latest);
   } catch ({ message }) {

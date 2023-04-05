@@ -50,12 +50,27 @@ export const USERS_LIST = defineRoute(`${AUTHORIZED}/users`, {
     ANNOTATION.SEARCH(),
     ANNOTATION.SORT_D(),
     // TODO define list of available sort fields
-    ANNOTATION.SORT_F({ defaults: 'createdDate', isValid: v => ['firstName', 'email', 'gender', 'createdDate', 'state'].indexOf(v) > -1 }),
+    ANNOTATION.SORT_F({ defaults: 'createdDate', isValid: v => ['firstName', 'email', 'gender', 'createdDate', 'status'].indexOf(v) > -1 }),
     { short: 'usf', name: 'state', sValid: v => Object.values(USER_STATE_FILTER).includes(v), defaults: USER_STATE_FILTER.ALL },
   ],
 });
 USERS_LIST.USER_STATE_FILTER = USER_STATE_FILTER;
 
 export const USERS_EDIT = defineRoute(`${USERS_LIST.ROUTE}/edit/:id`, {
+  params: [ANNOTATION.ID()],
+});
+
+export const EDUCATION_SYSTEMS_LIST = defineRoute(`${AUTHORIZED}/education-systems`, {
+  query: [
+    ANNOTATION.PAGE(),
+    ANNOTATION.SIZE(),
+    ANNOTATION.SEARCH(),
+    ANNOTATION.SORT_D(),
+    // TODO define list of available sort fields
+    ANNOTATION.SORT_F({ defaults: 'createdDate', isValid: v => ['name', 'language', 'id', 'createdDate'].indexOf(v) > -1 }),
+  ],
+});
+
+export const EDUCATION_SYSTEM_EDIT = defineRoute(`${EDUCATION_SYSTEMS_LIST.ROUTE}/edit/:id`, {
   params: [ANNOTATION.ID()],
 });

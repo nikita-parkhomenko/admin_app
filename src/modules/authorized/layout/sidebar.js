@@ -9,8 +9,9 @@ import { Sidebar as SidebarPro, Menu, MenuItem, useProSidebar } from 'react-pro-
 
 // local dependencies
 import { AppLogo } from '../../../assets';
-import { UserCogIcon, PlusIcon } from '../../../components';
 import * as ROUTE from '../../../constants/routes';
+import { UserCogIcon, PlusIcon, GraduationCapIcon, MinusIcon } from '../../../components';
+
 
 export const Sidebar = memo(function Sidebar ({ className }) {
   const { collapseSidebar, collapsed } = useProSidebar();
@@ -25,12 +26,15 @@ export const Sidebar = memo(function Sidebar ({ className }) {
         <h2 className="h3 mb-0 fw-bold"> Djema </h2>
       </div>
       <Button color="transparent" className="border-0 text-center d-none d-lg-block" onClick={() => collapseSidebar()}>
-        {collapsed ? <PlusIcon /> : <PlusIcon />}
+        {collapsed ? <PlusIcon /> : <MinusIcon />}
       </Button>
     </div>
     <Menu>
       <MenuItem className="mb-2" icon={<UserCogIcon />} component={<NavLink to={ROUTE.USERS_LIST.LINK()} />}>
         Users
+      </MenuItem >
+      <MenuItem className="mb-2" icon={<GraduationCapIcon />} component={<NavLink to={ROUTE.EDUCATION_SYSTEMS_LIST.LINK()} />}>
+        Education Systems
       </MenuItem >
     </Menu>
   </SidebarPro>;

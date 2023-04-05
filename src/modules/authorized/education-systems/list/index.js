@@ -9,41 +9,27 @@ import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import { Container, Row, Col, Button, Table, Alert, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 
 // local dependencies
-import { usersListCtrl } from './controller';
-import { humanize, } from '../../../../services';
-import { USERS_EDIT, USERS_LIST } from '../../../../constants';
+import { educationSystemsListCtrl } from './controller';
+import { EDUCATION_SYSTEM_EDIT } from '../../../../constants';
 import { AlertError, Preloader, SearchInput, SortBy, PlusIcon, Pagination, EllipsisHIcon, EditIcon, TrashIcon, PageSize } from '../../../../components';
 
 
 // configure
 const dateFormat = 'MMM D, YYYY h:mm A';
 
-export const UserList = memo(function UserList () {
+export const EducationSystemsList = memo(function EducationSystemsList () {
   const [
-    { initialized, disabled, errorMessage, list, search, state, size, sortF, sortD, page, totalPages },
+    { initialized, disabled, errorMessage, list, search, size, sortF, sortD, page, totalPages },
     { initialize, updateCtrl, deleteItem, updateFilter }
-  ] = useController(usersListCtrl);
+  ] = useController(educationSystemsListCtrl);
 
   useEffect(() => { initialize({}); }, [initialize]);
 
   const prepared = useMemo(() => _.map(list, item => ({
     ...item,
     onDelete: () => deleteItem(item),
-    status: humanize(_.get(item, 'status')),
-    gender: humanize(_.get(item, 'gender')),
     createdDate: dayjs(_.get(item, 'createdDate')).format(dateFormat),
-    name: `${_.get(item, 'firstName', '...')} ${_.get(item, 'lastName') || ''}`,
   })), [list, deleteItem]);
-
-  const userState = useMemo(() => ({
-    selected: humanize(_.find(Object.keys(USERS_LIST.USER_STATE_FILTER), key => USERS_LIST.USER_STATE_FILTER[key] === state) || '...'),
-    list: _.map(Object.keys(USERS_LIST.USER_STATE_FILTER), key => ({
-      id: key,
-      name: humanize(key),
-      disabled: USERS_LIST.USER_STATE_FILTER[key] === state,
-      onClick: () => updateFilter({ page: 0, state: USERS_LIST.USER_STATE_FILTER[key] })
-    })),
-  }), [updateFilter, state]);
 
   // NOTE prepare actions
   const handleChangePage = useCallback(page => updateFilter({ page }), [updateFilter]);
@@ -54,29 +40,19 @@ export const UserList = memo(function UserList () {
   const handleClear = useCallback(() => updateFilter({ page: 0, search: '' }), [updateFilter]);
   const handleApply = useCallback(() => updateFilter({ page: 0, search }), [updateFilter, search]);
 
-  return <Container fluid id="UserList" className={cn('user-list', { 'no-events': disabled })}>
+  return <Container fluid id="EducationSystemsList" className={cn('education-systems-list', { 'no-events': disabled })}>
     <Row className="border-bottom mb-3">
-      <Col tag="h2"> Users </Col>
+      <Col tag="h2"> Education Systems </Col>
     </Row>
     <Row>
       <Col active tag={AlertError} message={errorMessage} onClear={handleClearError} className="animated fadeIn" xs={{ size: 10, offset: 1 }} />
     </Row>
-    <Row className="d-flex align-items-center border-bottom mb-3 pb-3">
+    <Row className="d-flex justify-content-between align-items-center border-bottom mb-3 pb-3">
       <Col xs="5">
         <SearchInput value={search} onApply={handleApply} onClear={handleClear} onChange={handleChangeSearch} />
       </Col>
-      <Col xs="auto" className="d-flex flex-row flex-grow-1">
-        <UncontrolledDropdown className="me-3">
-          <DropdownToggle caret> { userState.selected } State </DropdownToggle>
-          <DropdownMenu>
-            { _.map(userState.list, ({ id, name, disabled, onClick }) => <DropdownItem key={id} disabled={disabled} onClick={onClick}>
-              { name }
-            </DropdownItem>) }
-          </DropdownMenu>
-        </UncontrolledDropdown>
-      </Col>
       <Col xs="auto" className="text-end">
-        <Button to={USERS_EDIT.LINK({})} tag={Link} color="primary" className="rounded-pill text-white">
+        <Button to={EDUCATION_SYSTEM_EDIT.LINK({})} tag={Link} color="primary" className="rounded-pill text-white">
           <PlusIcon className="me-2" /> CREATE
         </Button>
       </Col>
@@ -88,28 +64,23 @@ export const UserList = memo(function UserList () {
             <thead>
               <tr>
                 <th>
-                  <SortBy field="firstName" sortF={sortF} sortD={sortD} onChange={handleSort}>
-                    <strong className="text-primary"> User Name </strong>
+                  <SortBy field="name" sortF={sortF} sortD={sortD} onChange={handleSort}>
+                    <strong className="text-primary"> Name </strong>
                   </SortBy>
                 </th>
                 <th>
-                  <SortBy field="email" sortF={sortF} sortD={sortD} onChange={handleSort}>
-                    <strong className="text-primary"> Email </strong>
+                  <SortBy field="language" sortF={sortF} sortD={sortD} onChange={handleSort}>
+                    <strong className="text-primary"> Language </strong>
                   </SortBy>
                 </th>
                 <th>
-                  <SortBy field="gender" sortF={sortF} sortD={sortD} onChange={handleSort}>
-                    <strong className="text-primary"> Gender </strong>
+                  <SortBy field="id" sortF={sortF} sortD={sortD} onChange={handleSort}>
+                    <strong className="text-primary"> Id </strong>
                   </SortBy>
                 </th>
                 <th>
                   <SortBy field="createdDate" sortF={sortF} sortD={sortD} onChange={handleSort}>
                     <strong className="text-primary"> Created date </strong>
-                  </SortBy>
-                </th>
-                <th>
-                  <SortBy disabled field="state" sortF={sortF} sortD={sortD} onChange={handleSort}>
-                    <strong className="text-primary"> Status </strong>
                   </SortBy>
                 </th>
                 <th style={{ width: '1%' }}> </th>
@@ -120,19 +91,18 @@ export const UserList = memo(function UserList () {
                 <td colSpan="6">
                   <Alert color="chrome" className="empty-table-message"> No results found </Alert>
                 </td>
-              </tr> : _.map(prepared, ({ id, name, gender, createdDate, status, email, onDelete }) => <tr key={id}>
+              </tr> : _.map(prepared, ({ id, name, createdDate, language, onDelete }) => <tr key={id}>
                 <td className="text-truncate"> { name } </td>
-                <td className="text-truncate"> { email } </td>
-                <td className="text-nowrap"> { gender } </td>
+                <td className="text-truncate"> { language } </td>
+                <td className="text-nowrap"> { id } </td>
                 <td className="text-nowrap"> { createdDate } </td>
-                <td className="text-nowrap"> { status } </td>
                 <td className="va-middle p-0">
                   <UncontrolledDropdown>
                     <DropdownToggle color="none" size="lg">
                       <EllipsisHIcon />
                     </DropdownToggle>
                     <DropdownMenu>
-                      <DropdownItem tag={Link} className="py-2" to={USERS_EDIT.LINK({ id })}>
+                      <DropdownItem tag={Link} className="py-2" to={EDUCATION_SYSTEM_EDIT.LINK({ id })}>
                         <EditIcon size="lg" className="me-2 text-primary" /> Edit
                       </DropdownItem>
                       <DropdownItem onClick={onDelete} className="py-2">

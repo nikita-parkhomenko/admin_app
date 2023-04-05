@@ -10,6 +10,8 @@ import { useSelf } from '../hooks';
 import { NotFound } from '../../components';
 import { ERROR_MESSAGE } from '../../services';
 import * as ROUTES from '../../constants/routes';
+import { EducationSystems } from './education-systems';
+
 
 export const Authorized = memo(function Authorized () {
   const user = useSelf();
@@ -19,6 +21,7 @@ export const Authorized = memo(function Authorized () {
     : <Layout>
       <Switch>
         <Route path={ROUTES.USERS_LIST.ROUTE} component={Users} />
+        <Route path={ROUTES.EDUCATION_SYSTEMS_LIST.ROUTE} component={EducationSystems} />
         {/*OTHERWISE*/}
         <Route path="" component={NotFound} />
         {/*<Redirect to={{ pathname: ROUTES.USERS_LIST.LINK() }} />*/}
