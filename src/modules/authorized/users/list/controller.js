@@ -3,7 +3,7 @@
 import _ from 'lodash';
 import { toast } from 'react-toastify';
 import { create } from 'redux-saga-controller';
-import { takeEvery, put, call, select } from 'redux-saga/effects';
+import { takeEvery, put, call, select, delay } from 'redux-saga/effects';
 
 // local dependencies
 import { USERS_LIST } from '../../../../constants';
@@ -41,6 +41,7 @@ export const usersListCtrl = create({
 function * initializeExe ({ type, payload }) {
   // yield put(usersListCtrl.action.clearCtrl());
   const query = yield call(USERS_LIST.QUERY);
+  yield delay(400 * 3);
   yield call(updateFilterExe, { type, payload: { ...query } });
   yield put(usersListCtrl.action.updateCtrl({ initialized: true }));
 }

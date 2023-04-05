@@ -4,37 +4,13 @@
 }
 
 #Layout {
-  @import 'user-menu';
-  @import 'sidebar';
   @import 'header';
+  @import 'sidebar';
 
   height: 100vh;
+  display: flex;
   overflow: hidden;
   position: relative;
   touch-action: manipulation;
   -ms-touch-action: manipulation;
-
-  #content {
-    overflow: hidden;
-    position: relative;
-    @include layoutWithAnimation();
-    -webkit-overflow-scrolling: touch; // draw a divider for the sidebar
-    .hide-scroll-bar {
-      height: 100%;
-      position: relative;
-      overflow-x: hidden;
-      overflow-y: scroll;
-      padding-right: 21px;
-      margin-right: -21px;
-      scrollbar-gutter: stable;
-      width: calc(100% + 21px);
-    }
-  }
-
-  #content {
-    overflow-y: auto;
-    background-color: $content-bg;
-  }
-
-  #content { width: 100%; }
 }

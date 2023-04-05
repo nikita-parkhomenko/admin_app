@@ -1,10 +1,9 @@
 
 #UserList {
-  padding-top: 12px;
   padding-bottom: 12px;
 
   .app-preloader {
-    height: calc(100vh - 274px);
+    height: calc(100vh - 312px);
   }
 
   .empty-table-message {
@@ -18,7 +17,7 @@
 
   .container-scrollable-table {
     overflow: auto;
-    height: calc(100vh - 274px);
+    height: calc(100vh - 312px);
 
     table {
       margin-bottom: 0;

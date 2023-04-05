@@ -1,3 +1,3 @@
 
 export * from './layout';
-export * from './app-header';
+export * from './header';

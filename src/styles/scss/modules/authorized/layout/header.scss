@@ -1,11 +1,24 @@
 
 #Header {
 
-  & > .container-fluid {
-    justify-content: start;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
 
-    .navbar-brand {
-      .logo { @include rect-size(60px)}
+  .header-btn {
+    border: 1px solid #E9EDF1;
+  }
+
+  .dropdown {
+    .dropdown-menu {
+      min-width: 300px;
+
+      .dropdown-item {
+        .avatar-img {
+          @include rect-size(46px);
+        }
+      }
     }
   }
 }

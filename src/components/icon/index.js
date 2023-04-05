@@ -36,6 +36,7 @@ function create (src, name) {
 // @see https://fontawesome.com/v5/search
 export const CogIcon = create(fas, 'faCog');
 export const ListIcon = create(fas, 'faList');
+export const UserIcon = create(fas, 'faUser');
 export const BarsIcon = create(fas, 'faBars');
 export const SortIcon = create(fas, 'faSort');
 export const PlusIcon = create(fas, 'faPlus');
@@ -47,6 +48,7 @@ export const ListAltIcon = create(fas, 'faListAlt');
 export const UserCogIcon = create(fas, 'faUserCog');
 export const SignOutIcon = create(fas, 'faSignOutAlt');
 export const EllipsisHIcon = create(fas, 'faEllipsisH');
+export const ArrowRightIcon = create(fas, 'faArrowRight');
 export const SortAmountUpIcon = create(fas, 'faSortAmountUp');
 export const SortAmountDownIcon = create(fas, 'faSortAmountDown');
 export const ExclamationTriangleIcon = create(fas, 'faExclamationTriangle');
