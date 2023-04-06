@@ -10,7 +10,8 @@ import { Container, Row, Col, Button, Table, Alert, DropdownItem, DropdownMenu, 
 
 // local dependencies
 import { educationSystemsListCtrl } from './controller';
-import { EDUCATION_SYSTEM_EDIT } from '../../../../constants';
+import { EDUCATION_SYSTEM_EDIT, NEW_ID } from '../../../../constants';
+import { useEditEducationSystemModal } from '../../layout/modals/edit-education-system';
 import { AlertError, Preloader, SearchInput, SortBy, PlusIcon, Pagination, EllipsisHIcon, EditIcon, TrashIcon, PageSize } from '../../../../components';
 
 
@@ -24,6 +25,7 @@ export const EducationSystemsList = memo(function EducationSystemsList () {
   ] = useController(educationSystemsListCtrl);
 
   useEffect(() => { initialize({}); }, [initialize]);
+  const [initEducationSystemModal] = useEditEducationSystemModal();
 
   const prepared = useMemo(() => _.map(list, item => ({
     ...item,
@@ -39,6 +41,7 @@ export const EducationSystemsList = memo(function EducationSystemsList () {
   const handleClearError = useCallback(() => updateCtrl({ errorMessage: null }), [updateCtrl]);
   const handleClear = useCallback(() => updateFilter({ page: 0, search: '' }), [updateFilter]);
   const handleApply = useCallback(() => updateFilter({ page: 0, search }), [updateFilter, search]);
+  const handleOpenEducationModal = useCallback(() => initEducationSystemModal({ id: NEW_ID }), [initEducationSystemModal]);
 
   return <Container fluid id="EducationSystemsList" className={cn('education-systems-list', { 'no-events': disabled })}>
     <Row className="border-bottom mb-3">
@@ -52,7 +55,7 @@ export const EducationSystemsList = memo(function EducationSystemsList () {
         <SearchInput value={search} onApply={handleApply} onClear={handleClear} onChange={handleChangeSearch} />
       </Col>
       <Col xs="auto" className="text-end">
-        <Button to={EDUCATION_SYSTEM_EDIT.LINK({})} tag={Link} color="primary" className="rounded-pill text-white">
+        <Button onClick={handleOpenEducationModal} color="primary" className="rounded-pill text-white">
           <PlusIcon className="me-2" /> CREATE
         </Button>
       </Col>

@@ -13,14 +13,11 @@ import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import { useRefCallback } from '../modules/hooks';
 
 // eslint-disable-next-line max-len
-export const FormikSelect = memo(function FormikSelect ({ field, form, label, isFloating, skipTouch, classNameFormGroup, isCreatable, className, disabled, isSimple, defaultValue, getOptionValue, getOptionLabel, onChangeHelper, options, ...props }) {
+export const FormikSelect = memo(function FormikSelect ({ field, form, label, isFloating, classNameFormGroup, isCreatable, className, disabled, isSimple, defaultValue, getOptionValue, getOptionLabel, onChangeHelper, options, ...props }) {
   const { name, value } = field;
   const [_field, meta, helpers] = useField(name);
   const { touched, error } = meta;
   const { setTouched, setValue } = helpers;
-  useEffect(() => {
-    if (!touched && skipTouch) setTouched(true, true);
-  }, [setTouched, skipTouch, touched]);
 
   // NOTE handle valid/invalid state and error message for input
   let statusClass = '';
@@ -77,7 +74,6 @@ export const FormikSelect = memo(function FormikSelect ({ field, form, label, is
 FormikSelect.propTypes = {
   disabled: PropTypes.bool,
   isSimple: PropTypes.bool, // allow to put into form only value from options item
-  skipTouch: PropTypes.bool,
   className: PropTypes.string,
   getOptionLabel: PropTypes.func,
   getOptionValue: PropTypes.func,
@@ -91,7 +87,6 @@ FormikSelect.defaultProps = {
   className: '',
   disabled: false,
   isSimple: false,
-  skipTouch: false,
   closeMenuOnSelect: true,
   classNameFormGroup: '',
   onChangeHelper: e => e,
@@ -101,6 +96,6 @@ FormikSelect.defaultProps = {
 
 function getValue (options, value, getOptionValue) {
   // NOTE incorrect checks lead to impossible to select false value as 0|null|false
-  if (_.isUndefined(value)) return value;
+  if (_.isUndefined(value) || value === '') return value;
   return _.find(options, o => getOptionValue(o) === value);
 }

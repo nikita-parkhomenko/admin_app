@@ -2,27 +2,22 @@
 // outsource dependencies
 import cn from 'classnames';
 import PropTypes from 'prop-types';
+import React, { memo, useState } from 'react';
 import { ErrorMessage, useField } from 'formik';
-import React, { memo, useEffect, useState } from 'react';
 import { Input, Label, FormGroup, Button } from 'reactstrap';
 
 // local dependencies
 // import { Icon } from './icons';
 
 // eslint-disable-next-line max-len
-export const FormikPassword = memo(function InputPassword ({ field, form, label, id, isFloating, className, classNameFormGroup, skipTouch, disabled, ...props }) {
+export const FormikPassword = memo(function InputPassword ({ field, form, label, id, isFloating, className, classNameFormGroup, disabled, ...props }) {
   const { name } = field;
-  const [_, meta, helpers] = useField(name);
+  const [_, meta] = useField(name);
   const { touched, error } = meta;
-  const { setTouched } = helpers;
 
   // NOTE: input type password by default
   const [isPasswordType, toggleInputType] = useState(true);
   const handleToggleInputType = () => toggleInputType(prev => !prev);
-
-  useEffect(() => {
-    if (!touched && skipTouch) setTouched(true, true);
-  }, [setTouched, skipTouch, touched]);
 
   // NOTE handle valid/invalid state and error message for FormikPassword
   let statusClass = '';

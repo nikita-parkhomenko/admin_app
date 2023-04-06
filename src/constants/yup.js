@@ -10,7 +10,6 @@ import * as yup from 'yup';
 const STRING = yup.string('Should be a string')
   .nullable()
   .strict();
-  // @see {@link https://estative.atlassian.net/browse/EST-681}
   // .trim('Shouldn\'t contain whitespaces at start and end of text');
 
 const NUMBER = yup.number().nullable().strict();

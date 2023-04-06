@@ -2,25 +2,20 @@
 // outsource dependencies
 import cn from 'classnames';
 import PropTypes from 'prop-types';
+import React, { memo, useMemo } from 'react';
 import { useField, ErrorMessage } from 'formik';
 import { Label, FormGroup, Input } from 'reactstrap';
-import React, { memo, useEffect, useMemo } from 'react';
 
 // local dependencies
 
 // eslint-disable-next-line max-len
-export const FormikInput = memo(function FormikInput ({ field, form, label, id, isFloating, className, classNameFormGroup, skipTouch, format, ...props }) {
+export const FormikInput = memo(function FormikInput ({ field, form, label, id, isFloating, className, classNameFormGroup, format, ...props }) {
   const { name, value } = field;
-  const [_, meta, helpers] = useField(name);
+  const [_, meta] = useField(name);
   const { touched, error } = meta;
-  const { setTouched } = helpers;
 
   // NOTE ability to format view value
   const val = useMemo(() => format(value), [format, value]);
-
-  useEffect(() => {
-    if (!touched && skipTouch) setTouched(true, true);
-  }, [setTouched, skipTouch, touched]);
 
   // NOTE handle valid/invalid state and error message for input
   let statusClass = '';

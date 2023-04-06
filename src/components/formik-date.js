@@ -5,20 +5,16 @@ import PropTypes from 'prop-types';
 import { FormGroup } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import { ErrorMessage, useField } from 'formik';
-import React, { useCallback, memo, useEffect } from 'react';
+import React, { useCallback, memo } from 'react';
 
 // local dependencies
 
 // eslint-disable-next-line max-len
-export const FormikDate = memo(function FormikDate ({ field, form, label, skipTouch, classNameFormGroup, className, placeholder, popperClassName, popperPlacement, dateFormat, ...props }) {
+export const FormikDate = memo(function FormikDate ({ field, form, label, classNameFormGroup, className, placeholder, popperClassName, popperPlacement, dateFormat, ...props }) {
   const { name, value } = field;
   const [_, meta, helpers] = useField(name);
   const { touched, error } = meta;
   const { setTouched, setValue } = helpers;
-
-  useEffect(() => {
-    if (!touched && skipTouch) setTouched(true, true);
-  }, [setTouched, skipTouch, touched]);
 
   // NOTE handle valid/invalid state and error message for input
   let statusClass = '';
@@ -51,7 +47,6 @@ export const FormikDate = memo(function FormikDate ({ field, form, label, skipTo
 
 FormikDate.propTypes = {
   label: PropTypes.string,
-  skipTouch: PropTypes.bool,
   className: PropTypes.string,
   dateFormat: PropTypes.string,
   placeholder: PropTypes.string,
@@ -77,7 +72,6 @@ FormikDate.propTypes = {
 FormikDate.defaultProps = {
   label: '',
   className: '',
-  skipTouch: false,
   placeholder: null,
   classNameFormGroup: '',
   dateFormat: 'dd/MM/yyyy',

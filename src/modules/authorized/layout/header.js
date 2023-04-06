@@ -38,10 +38,11 @@ export const Header = memo(function Header ({ className }) {
       </Button>
       <UncontrolledDropdown>
         <DropdownToggle caret color="transparent" className="header-btn shadow-sm d-flex align-items-center">
+          <p className="mb-0 me-2 text-muted"> {firstName} {lastName} </p>
           <UserIcon className="me-2" />
         </DropdownToggle>
         <DropdownMenu className="border-0 shadow-sm">
-          <DropdownItem onClick={handleComingSoon} className="d-flex align-items-center py-3">
+          <DropdownItem header className="d-flex align-items-center py-3">
             <Avatar src={imageUrl} className="avatar-img me-3" />
             <div>
               <p className="mb-0"> {firstName} {lastName} </p>

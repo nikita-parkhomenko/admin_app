@@ -1,11 +1,11 @@
 {
-  "name": "djema",
+  "name": "djema_admin",
   "version": "0.1.0",
   "private": true,
-  "description": "Djema EdTech client app",
+  "description": "Djema Administrative part app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/illyaprykhodko/djema_frontend"
+    "url": "https://github.com/illyaprykhodko/djema_admin_frontend"
   },
   "engines": {
     "node": ">=16",

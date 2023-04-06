@@ -12,6 +12,7 @@ import { ImageCropTrigger } from './trigger';
 import { imageCropCtrl } from './controller';
 import { Preloader, AlertError } from '../../../../../components';
 
+
 export { useImageCropModal, ImageCropTrigger };
 
 export const ImageCropModal = memo(function ImageCropModal () {
